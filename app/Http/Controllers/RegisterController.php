@@ -7,11 +7,14 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
-    //
+    //untuk menampilkan halaman register
+
     public function show()
     {
         return view('register');
     }
+
+    //untuk simpan data ke database
 
     public function register(Request $request)
     {
@@ -20,6 +23,8 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-        return "Disimpan!";
+
+        return redirect('/login')->with('Success','Berhasil Mendaftar, Silahkan Login!');
+        //return "berhasil simpan";
     }
 }
